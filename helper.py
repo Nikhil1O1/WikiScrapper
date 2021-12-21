@@ -1,5 +1,7 @@
 import re
 import string
+import codecs
+
 def tagSearch(soup):
     reg_str = "<" + 'h2' + ">(.*?)</" + 'h2' + ">"
     res = re.findall(reg_str,soup)
@@ -14,7 +16,9 @@ def tagName(s):
     end = s.find('</')
     substring = s[start:end]
     print(substring)
+    saveOutput(substring)
     print("")
+    saveOutput('\n')
 
 
 def ask_name():
@@ -24,3 +28,8 @@ def ask_name():
             return name
         else:
             print("Please use only letters, try again")
+
+def saveOutput(s):
+    file = codecs.open("Output.txt", "a", "utf-8")
+    file.write(s)
+    file.close()
